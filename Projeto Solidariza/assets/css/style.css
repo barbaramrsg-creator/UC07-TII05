@@ -1,48 +1,47 @@
-/* ==========================================================================
-   1. IMPORTAÇÃO DE FONTES E VARIÁVEIS GLOBAIS
-   ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* =========================================
+   1. FONTES E CORES
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-    /* Paleta Sustentável */
-    --cor-primaria: #2E7D32;       /* Verde Folha (Ação principal) */
-    --cor-primaria-hover: #1B5E20; /* Verde Escuro (Ao passar o mouse) */
-    --cor-fundo-card: #E8F5E9;     /* Verde Sálvia (Apoio) */
-    
-    /* Cores Neutras e Acessibilidade (IHC) */
-    --cor-texto: #212121;          /* Cinza Carvão para leitura confortável */
-    --cor-texto-claro: #757575;    /* Cinza médio para textos secundários */
-    --cor-fundo-site: #F8F9FA;     /* Branco Gelo */
-    --cor-branco: #FFFFFF;         /* Fundo de elementos em destaque */
-    
-    /* Estilos Visuais */
-    --borda-padrao: 1px solid #E0E0E0;
-    --sombra-leve: 0 4px 6px rgba(0,0,0,0.05);
-    --sombra-hover: 0 8px 15px rgba(0,0,0,0.1);
-    
-    /* Tipografia */
-    --fonte-principal: 'Inter', sans-serif;
+    --verde: #2E7D32;
+    --verde-escuro: #1B5E20;
+    --verde-medio: #4A9B59;
+    --branco: #FFFFFF;
+    --fundo: #F5F8F5;
+    --texto: #263528;
+    --texto-claro: #68736A;
+    --borda: #E0E8E0;
+    --fonte: 'Poppins', sans-serif;
+    --sombra: 0 5px 18px rgba(0, 0, 0, 0.07);
 }
 
-/* ==========================================================================
-   2. RESET CSS (Padronização entre navegadores)
-   ========================================================================== */
+/* =========================================
+   2. CONFIGURAÇÕES GERAIS
+   ========================================= */
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Garante que padding não aumente o tamanho da caixa */
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: var(--fonte-principal);
-    background-color: var(--cor-fundo-site);
-    color: var(--cor-texto);
-    line-height: 1.6;
+    font-family: var(--fonte);
+    background: var(--fundo);
+    color: var(--texto);
+    line-height: 1.7;
 }
 
 a {
+    color: inherit;
     text-decoration: none;
-    color: var(--cor-texto);
     transition: color 0.3s ease;
 }
 
@@ -50,234 +49,635 @@ ul {
     list-style: none;
 }
 
-/* ==========================================================================
-   3. CABEÇALHO E NAVEGAÇÃO (NAVBAR)
-   ========================================================================== */
+button {
+    font-family: var(--fonte);
+}
+
+/* =========================================
+   3. CABEÇALHO
+   ========================================= */
+
 .cabecalho-principal {
-    background-color: var(--cor-branco);
-    border-bottom: var(--borda-padrao);
-    box-shadow: var(--sombra-leve);
-    position: sticky; /* Mantém o menu no topo ao rolar a página */
+    background: var(--branco);
+    border-bottom: 1px solid var(--borda);
+    box-shadow: var(--sombra);
+    position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .navbar {
+    width: 94%;
+    max-width: 1600px;
+    margin: auto;
+    padding: 14px 20px;
     display: flex;
-    justify-content: space-between; /* Separa a logo dos links */
-    align-items: center;            /* Centraliza verticalmente */
-    max-width: 1200px;              /* Largura máxima do conteúdo */
-    margin: 0 auto;                 /* Centraliza a navbar na tela */
-    padding: 15px 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo a  {
- display: flex;
- align-items: center;
- gap: 12px;
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-
-.logo  img {
-    height: 50px; /* Ajuste o tamanho da logo conforme necessário */
+.logo img {
+    height: 50px;
     width: auto;
     display: block;
-
 }
 
 .logo h1 {
+    font-family: var(--fonte);
     font-size: 1.5rem;
-    color: var(--cor-primaria);
     font-weight: 700;
+    color: var(--verde);
 }
+
+/* Links do cabeçalho */
 
 .menu-links {
     display: flex;
     align-items: center;
-    gap: 30px; /* Espaçamento entre os itens do menu */
+    gap: 35px;
+    margin-left: auto;
+    transform: translateX(18px);
 }
 
-.menu-links a:hover {
-    color: var(--cor-primaria);
+.cabecalho-principal .navbar .menu-links li a {
+    font-family: var(--fonte);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--verde);
+    transition: color 0.3s ease;
 }
 
-/* ==========================================================================
-   4. BOTÕES (Componentes Reutilizáveis)
-   ========================================================================== */
-.btn-sustentavel {
-    background-color: var(--cor-primaria);
-    color: var(--cor-branco) !important;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.cabecalho-principal .navbar .menu-links li a:hover,
+.cabecalho-principal .navbar .menu-links li a:focus-visible {
+    color: var(--verde-escuro);
 }
 
-.btn-sustentavel:hover {
-    background-color: var(--cor-primaria-hover);
-    transform: translateY(-2px); /* Efeito sutil de levantar ao passar o mouse */
+/* =========================================
+   4. MENU HAMBÚRGUER
+   ========================================= */
+
+.menu-hamburguer {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
 }
 
-.btn-secundario {
-    background-color: transparent;
-    color: var(--cor-primaria);
-    padding: 10px 20px;
-    border: 2px solid var(--cor-primaria);
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s ease;
+.menu-hamburguer span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin: 6px 0;
+    border-radius: 3px;
+    background: var(--verde);
+    transition: 0.3s;
 }
 
-.btn-secundario:hover {
-    background-color: var(--cor-primaria);
-    color: var(--cor-branco);
-}
+/* =========================================
+   5. CONTEÚDO PRINCIPAL
+   ========================================= */
 
-.btn-grande {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-}
-
-/* ==========================================================================
-   5. PÁGINA INICIAL: HERO SECTION
-   ========================================================================== */
 .conteudo-principal {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 55px 0 0;
 }
+
+/* =========================================
+   6. HERO - TEXTO E IMAGEM
+   ========================================= */
 
 .hero-section {
-    display: flex;
+    width: 100%;
+    min-height: 560px;
+    display: grid;
+    grid-template-columns: 42% 58%;
     align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    margin-bottom: 80px;
-    padding: 40px 0;
+    gap: 0;
+    margin: 0 auto 80px;
+    padding: 30px 2vw 30px 5vw;
 }
 
 .hero-textos {
-    flex: 1; /* Ocupa 50% do espaço */
+    width: 100%;
+    padding: 25px 35px 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .hero-textos h2 {
-    font-size: 2.8rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: var(--cor-texto);
+    max-width: 620px;
+    margin-bottom: 22px;
+    font-size: 2.6rem;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-align: center;
 }
 
 .hero-textos p {
-    font-size: 1.1rem;
-    color: var(--cor-texto-claro);
+    max-width: 560px;
     margin-bottom: 30px;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--texto-claro);
+    text-align: center;
 }
+
+/* =========================================
+   7. BOTÕES
+   ========================================= */
 
 .hero-botoes {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 15px;
 }
 
-.hero-imagem {
-    flex: 1; /* Ocupa os outros 50% do espaço */
-    display: flex;
+.btn-sustentavel {
+    display: inline-flex;
     justify-content: center;
+    align-items: center;
+    background: var(--verde);
+    color: var(--branco);
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.btn-sustentavel:hover {
+    background: var(--verde-escuro);
+    color: var(--branco);
+    transform: translateY(-3px);
+    box-shadow: var(--sombra);
+}
+
+.btn-grande {
+    width: 210px;
+    min-width: 210px;
+    height: 60px;
+}
+
+.btn-secundario {
+    background: transparent;
+    color: var(--verde);
+    padding: 10px 20px;
+    border: 2px solid var(--verde);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-secundario:hover {
+    background: var(--verde);
+    color: var(--branco);
+}
+
+/* =========================================
+   8. IMAGEM PRINCIPAL
+   ========================================= */
+
+.hero-imagem {
+    width: 100%;
+    height: 540px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: visible;
 }
 
 .hero-imagem img {
-    max-width: 100%;
-    height: auto;
-    /* Adiciona uma animação suave de flutuação para dar vida à página */
-    animation: flutuar 3s ease-in-out infinite; 
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    animation: none;
 }
 
-@keyframes flutuar {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
-}
+/* =========================================
+   9. COMO FUNCIONA
+   ========================================= */
 
-/* ==========================================================================
-   6. PÁGINA INICIAL: COMO FUNCIONA (CARDS)
-   ========================================================================== */
 .como-funciona {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 80px;
+    padding: 0;
+    background: transparent;
     text-align: center;
-    margin-bottom: 60px;
 }
 
 .como-funciona h3 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: var(--cor-primaria);
+    width: 100%;
+    margin: 0;
+    padding: 15px 20px;
+    background: var(--verde-medio);
+    color: var(--branco);
+    font-family: var(--fonte);
+    font-size: 1.35rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 0;
 }
 
+/* Cards de como funciona */
+
 .cards-passos {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 45px 5vw 55px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: stretch;
     gap: 30px;
 }
 
 .card {
-    background-color: var(--cor-branco);
-    border: var(--borda-padrao);
-    border-radius: 12px; /* Bordas arredondadas amigáveis */
-    padding: 30px;
     flex: 1;
-    box-shadow: var(--sombra-leve);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    min-width: 0;
+    background: var(--verde);
+    color: var(--branco);
+    padding: 40px 28px;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(46, 125, 50, 0.15);
+    transition: 0.3s ease;
 }
 
 .card:hover {
-    box-shadow: var(--sombra-hover);
-    transform: translateY(-5px); /* Efeito de elevação */
-    border-color: var(--cor-primaria); /* Destaque verde na borda */
+    background: var(--verde-escuro);
+    transform: translateY(-7px);
+    box-shadow: 0 14px 25px rgba(46, 125, 50, 0.23);
 }
 
 .card h4 {
+    color: var(--branco);
     font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: var(--cor-primaria);
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 18px;
 }
 
 .card p {
-    color: var(--cor-texto-claro);
+    color: #F0F7F0;
     font-size: 0.95rem;
+    line-height: 1.8;
 }
 
-/* ==========================================================================
-   7. RODAPÉ
-   ========================================================================== */
-.rodape-principal {
-    background-color: var(--cor-texto);
-    color: var(--cor-branco);
+/* =========================================
+   10. VITRINE DE CAMPANHAS
+   ========================================= */
+
+.vitrine-campanhas {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 70px;
+    padding: 60px 25px;
+    scroll-margin-top: 80px;
+}
+
+/* Cabeçalho das campanhas */
+
+.cabecalho-secao {
+    width: 100%;
     text-align: center;
-    padding: 30px 20px;
+    margin-bottom: 40px;
+}
+
+.cabecalho-secao h3 {
+    font-size: 2rem;
+    color: var(--verde-escuro);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.cabecalho-secao p {
+    color: var(--texto-claro);
+    font-size: 1.05rem;
+}
+
+/* Grade dos cards: lado a lado */
+
+.grid-campanhas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Card individual */
+
+.card-campanha {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+    background-color: var(--branco);
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    box-shadow: var(--sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-campanha:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Selo de status */
+
+.badge-status {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 6px 13px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.badge-status.ativa {
+    background-color: #E1F3E3;
+    color: var(--verde);
+}
+
+/* Título e descrição */
+
+.card-campanha h4 {
+    color: var(--texto);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.descricao-campanha {
+    color: var(--texto-claro);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+/* Rodapé e botão do card */
+
+.rodape-card {
+    width: 100%;
+    margin-top: auto;
+}
+
+.rodape-card .btn-sustentavel {
+    width: 100%;
+}
+
+/* Botão em bloco */
+
+.btn-bloco {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* =========================================
+   11. RODAPÉ
+   ========================================= */
+
+.rodape-principal {
+    width: 100%;
+    background: var(--verde-escuro);
+    color: var(--branco);
+    text-align: center;
+    padding: 25px 20px;
     margin-top: 60px;
 }
 
 .rodape-conteudo p {
-    margin-bottom: 5px;
-    color: #BDBDBD;
+    color: #E0EDE0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 3px;
 }
 
-/* ==========================================================================
-   8. RESPONSIVIDADE (Design Adaptável para Celulares)
-   ========================================================================== */
-@media (max-width: 768px) {
+/* =========================================
+   12. TABLETS
+   ========================================= */
+
+@media (max-width: 1024px) {
+
     .hero-section {
-        flex-direction: column-reverse; /* Imagem fica em cima, texto embaixo */
-        text-align: center;
+        grid-template-columns: 42% 58%;
+        padding-left: 3vw;
     }
-    
-    .hero-botoes {
-        justify-content: center;
+
+    .hero-textos h2 {
+        font-size: 2.2rem;
     }
-    
+
+    .hero-imagem {
+        height: 430px;
+    }
+
     .cards-passos {
-        flex-direction: column; /* Cards empilhados um embaixo do outro */
+        gap: 18px;
     }
-    
+
+    .card {
+        padding: 30px 20px;
+    }
+
+    .grid-campanhas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+/* =========================================
+   13. CELULARES
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        width: 100%;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+    }
+
+    .logo img {
+        height: 43px;
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+
+    .menu-hamburguer {
+        display: block;
+    }
+
     .menu-links {
-        display: none; /* Em um cenário real, aqui entraria um menu Hamburguer */
+        display: none;
+        width: 100%;
+        margin-left: 0;
+        padding: 22px 0 10px;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        transform: none;
+    }
+
+    .menu-links.ativo {
+        display: flex;
+    }
+
+    .conteudo-principal {
+        padding: 25px 0 0;
+    }
+
+    .hero-section {
+        min-height: auto;
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 20px 16px;
+        margin-bottom: 45px;
+        gap: 30px;
+    }
+
+    .hero-textos {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .hero-textos h2 {
+        font-size: 2rem;
+    }
+
+    .hero-textos p {
+        font-size: 1rem;
+    }
+
+    .hero-imagem {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+
+    .hero-imagem img {
+        width: 100%;
+        height: auto;
+        max-height: 420px;
+        border-radius: 16px;
+    }
+
+    .hero-botoes {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .hero-botoes .btn-grande {
+        width: 210px;
+        min-width: 0;
+        height: 58px;
+    }
+
+    .como-funciona {
+        margin-bottom: 50px;
+    }
+
+    .como-funciona h3 {
+        font-size: 1.2rem;
+        padding: 13px 12px;
+    }
+
+    .cards-passos {
+        width: 100%;
+        flex-direction: column;
+        padding: 30px 18px 40px;
+        gap: 20px;
+    }
+
+    .card {
+        width: 100%;
+        padding: 30px 22px;
+    }
+
+    /* Campanhas no celular */
+
+    .vitrine-campanhas {
+        padding: 40px 18px;
+        margin-bottom: 40px;
+    }
+
+    .cabecalho-secao h3 {
+        font-size: 1.6rem;
+    }
+
+    .grid-campanhas {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .card-campanha {
+        padding: 24px;
+    }
+
+    .rodape-principal {
+        margin-top: 50px;
+        padding: 25px 18px;
+    }
+}
+
+/* =========================================
+   14. CELULARES PEQUENOS
+   ========================================= */
+
+@media (max-width: 400px) {
+
+    .hero-textos h2 {
+        font-size: 1.75rem;
+    }
+
+    .hero-botoes {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-botoes .btn-grande {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .cabecalho-secao h3 {
+        font-size: 1.4rem;
     }
 }
